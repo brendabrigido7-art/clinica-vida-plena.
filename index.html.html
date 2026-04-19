@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clínica Vida Plena — Saúde com Cuidado e Excelência</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #1D9E75;
+      --verde-escuro: #0F6E56;
+      --verde-claro: #E1F5EE;
+      --creme: #FAF8F5;
+      --texto: #2C2C2A;
+      --texto-suave: #5F5E5A;
+      --borda: #D3D1C7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--creme);
+      color: var(--texto);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,248,245,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 6vw;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--verde-escuro);
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--verde); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      text-decoration: none; color: var(--texto-suave);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color .2s;
+    }
+    nav ul a:hover { color: var(--verde); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 4rem;
+      padding: 6rem 6vw;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; right: -120px; top: -80px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #9FE1CB44 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--verde-claro);
+      color: var(--verde-escuro);
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: .35rem .85rem; border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 700; line-height: 1.18;
+      color: var(--texto);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { color: var(--verde); font-style: normal; }
+    .hero p {
+      color: var(--texto-suave); font-size: 1.05rem;
+      max-width: 480px; margin-bottom: 2.5rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--verde);
+      color: #fff; text-decoration: none;
+      padding: .85rem 2rem; border-radius: 999px;
+      font-weight: 500; font-size: 0.95rem;
+      transition: background .2s, transform .2s;
+      margin-right: 1rem;
+    }
+    .btn-primary:hover { background: var(--verde-escuro); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-block;
+      border: 1.5px solid var(--verde);
+      color: var(--verde); text-decoration: none;
+      padding: .85rem 2rem; border-radius: 999px;
+      font-weight: 500; font-size: 0.95rem;
+      transition: all .2s;
+    }
+    .btn-outline:hover { background: var(--verde-claro); }
+
+    .hero-img-wrap {
+      position: relative;
+    }
+    .hero-img-wrap img {
+      width: 100%; border-radius: 24px;
+      object-fit: cover; height: 480px;
+      display: block;
+    }
+    .hero-badge {
+      position: absolute; bottom: -20px; left: -20px;
+      background: #fff; border: 1px solid var(--borda);
+      border-radius: 16px; padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: .75rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .hero-badge .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--verde);
+    }
+    .hero-badge .label { font-size: 0.8rem; color: var(--texto-suave); line-height: 1.3; }
+
+    /* ── SERVIÇOS ── */
+    #servicos { padding: 7rem 6vw; }
+    .section-head { text-align: center; margin-bottom: 4rem; }
+    .section-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: .75rem;
+    }
+    .section-head p { color: var(--texto-suave); max-width: 520px; margin: 0 auto; }
+
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .servico-card {
+      background: #fff; border: 1px solid var(--borda);
+      border-radius: 20px; padding: 2rem;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .servico-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.07); }
+    .servico-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--verde-claro);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .servico-card h3 {
+      font-size: 1.05rem; font-weight: 500;
+      margin-bottom: .5rem; color: var(--texto);
+    }
+    .servico-card p { font-size: 0.9rem; color: var(--texto-suave); }
+
+    /* ── IMAGEM SERVIÇOS ── */
+    .servicos-foto {
+      margin: 5rem 6vw 0;
+      border-radius: 24px; overflow: hidden;
+      height: 380px; position: relative;
+    }
+    .servicos-foto img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .servicos-foto-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(15,110,86,0.7) 0%, transparent 60%);
+      display: flex; align-items: center; padding: 3rem 4rem;
+    }
+    .servicos-foto-overlay h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      color: #fff; max-width: 420px;
+    }
+
+    /* ── EQUIPE ── */
+    #equipe { padding: 7rem 6vw; background: #fff; }
+    .equipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .membro-card { text-align: center; }
+    .membro-foto {
+      width: 120px; height: 120px; border-radius: 50%;
+      margin: 0 auto 1.25rem;
+      background: var(--verde-claro);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--verde-escuro);
+      font-weight: 700;
+      overflow: hidden;
+    }
+    .membro-foto img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .membro-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: .3rem; }
+    .membro-cargo {
+      font-size: 0.85rem; color: var(--verde);
+      font-weight: 500; margin-bottom: .5rem;
+    }
+    .membro-bio { font-size: 0.85rem; color: var(--texto-suave); }
+
+    /* ── CONTATO ── */
+    #contato { padding: 7rem 6vw; }
+    .contato-wrap {
+      max-width: 640px; margin: 0 auto;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block; font-size: 0.85rem; font-weight: 500;
+      margin-bottom: .4rem; color: var(--texto);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 1.5px solid var(--borda);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      background: #fff; color: var(--texto);
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--verde); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .btn-submit {
+      width: 100%;
+      background: var(--verde);
+      color: #fff; border: none; cursor: pointer;
+      padding: .95rem; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; font-weight: 500;
+      transition: background .2s;
+    }
+    .btn-submit:hover { background: var(--verde-escuro); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--texto); color: #fff;
+      padding: 3rem 6vw;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer .logo { color: #fff; }
+    footer .logo span { color: #9FE1CB; }
+    footer p { font-size: 0.85rem; color: #888780; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 4rem 5vw; }
+      .hero::before { display: none; }
+      .hero-img-wrap { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Vida<span>Plena</span></div>
+  <ul>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#equipe">Equipe</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-tag">Clínica Multidisciplinar</span>
+    <h1>Cuidar de você é a nossa <em>missão</em></h1>
+    <p>A Clínica Vida Plena reúne médicos, nutricionistas e especialistas em um único lugar — para que você tenha a melhor experiência de saúde possível.</p>
+    <a href="#contato" class="btn-primary">Agendar Consulta</a>
+    <a href="#servicos" class="btn-outline">Nossos Serviços</a>
+  </div>
+  <div class="hero-img-wrap">
+    <!-- Imagem 1 — Hero -->
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" alt="Profissional de saúde atendendo paciente com atenção e cuidado" />
+    <div class="hero-badge">
+      <div class="num">+2.400</div>
+      <div class="label">pacientes<br>atendidos</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="section-head">
+    <h2>Nossos Serviços</h2>
+    <p>Oferecemos cuidado integral à saúde, com atendimento humanizado e tecnologia de ponta.</p>
+  </div>
+
+  <div class="servicos-grid">
+    <div class="servico-card">
+      <div class="servico-icon">🩺</div>
+      <h3>Atendimento Médico</h3>
+      <p>Consultas com clínicos gerais e especialistas. Diagnóstico preciso e acompanhamento contínuo para todas as fases da vida.</p>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon">🧪</div>
+      <h3>Exames Laboratoriais</h3>
+      <p>Coleta e análise de exames com resultados rápidos e confiáveis. Laboratório equipado com tecnologia de última geração.</p>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon">🩻</div>
+      <h3>Exames de Imagem</h3>
+      <p>Ultrassonografia, radiografia e outros exames com laudos emitidos por radiologistas experientes em até 24h.</p>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon">🥗</div>
+      <h3>Aconselhamento Nutricional</h3>
+      <p>Planos alimentares personalizados para emagrecimento, ganho de massa, reeducação alimentar e condições específicas de saúde.</p>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon">🧠</div>
+      <h3>Saúde Mental</h3>
+      <p>Sessões com psicólogos e psiquiatras. Cuidamos do equilíbrio emocional com escuta ativa e planos terapêuticos individualizados.</p>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon">🏃</div>
+      <h3>Medicina Preventiva</h3>
+      <p>Check-ups regulares, vacinação e programas de prevenção para manter sua saúde em dia antes que os problemas apareçam.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOTO BANNER (Imagem 2) -->
+<div class="servicos-foto">
+  <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=1200&q=80" alt="Equipe médica da Clínica Vida Plena reunida, demonstrando trabalho colaborativo e comprometimento" />
+  <div class="servicos-foto-overlay">
+    <h2>Uma equipe comprometida com a sua saúde e bem-estar</h2>
+  </div>
+</div>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="section-head">
+    <h2>Nossa Equipe</h2>
+    <p>Profissionais qualificados e apaixonados pelo que fazem, prontos para cuidar de você.</p>
+  </div>
+
+  <div class="equipe-grid">
+    <div class="membro-card">
+      <div class="membro-foto">AM</div>
+      <h3>Dra. Ana Martins</h3>
+      <div class="membro-cargo">Clínica Geral · CRM 54.821</div>
+      <p class="membro-bio">15 anos de experiência em medicina de família, com especialização em medicina preventiva pela USP.</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-foto">RC</div>
+      <h3>Dr. Rafael Costa</h3>
+      <div class="membro-cargo">Cardiologista · CRM 61.003</div>
+      <p class="membro-bio">Cardiologista com fellowship no Instituto do Coração (InCor). Especialista em arritmias e hipertensão.</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-foto">JS</div>
+      <h3>Nutr. Juliana Santos</h3>
+      <div class="membro-cargo">Nutricionista · CRN 9.412</div>
+      <p class="membro-bio">Especialista em nutrição esportiva e clínica. Mestre em ciências da nutrição pela UNIFESP.</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-foto">PO</div>
+      <h3>Psic. Pedro Oliveira</h3>
+      <div class="membro-cargo">Psicólogo · CRP 06.98.432</div>
+      <p class="membro-bio">Psicólogo clínico com abordagem cognitivo-comportamental. Atende adultos, adolescentes e casais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-head">
+    <h2>Entre em Contato</h2>
+    <p>Preencha o formulário e nossa equipe entrará em contato para confirmar o agendamento.</p>
+  </div>
+
+  <div class="contato-wrap">
+    <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" />
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" name="cidade" placeholder="Sua cidade" />
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select id="estado" name="estado">
+            <option value="">Selecione</option>
+            <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+            <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+            <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+            <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+            <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+            <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+            <option>SP</option><option>SE</option><option>TO</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="servico">Serviço de interesse</label>
+        <select id="servico" name="servico">
+          <option value="">Selecione um serviço</option>
+          <option>Atendimento Médico</option>
+          <option>Exames Laboratoriais</option>
+          <option>Exames de Imagem</option>
+          <option>Aconselhamento Nutricional</option>
+          <option>Saúde Mental</option>
+          <option>Medicina Preventiva</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mensagem">Mensagem (opcional)</label>
+        <textarea id="mensagem" name="mensagem" placeholder="Descreva brevemente sua necessidade..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Enviar solicitação</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Vida<span>Plena</span></div>
+  <p>© 2025 Clínica Vida Plena — Todos os direitos reservados.</p>
+  <p>contato@vidaplena.com.br · (61) 3000-0000</p>
+</footer>
+
+</body>
+</html>
